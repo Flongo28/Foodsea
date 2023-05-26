@@ -74,6 +74,8 @@ Concept
         um bei einen Abbruch des Crawlers die Datenbank nicht zu beschädigen und an der richtigen Stelle weiterzumachen. Damit kann eine 
         hohe Anzahl an Rezepten geladen werden, ohne die API zu überlasten. 
 
+        <img src="{{ asset('img/LoadingRecepies.png') }}" alt="Flowchart" width="100%">
+
         <h3 class="blog-post-title">UI Verbesserungen</h3>
         Um die UI zu verbessern, wurde ein double Slider mit noUiSlider implementiert, um die Kochzeit zu filtern. Außerdem wurde
         die Kategorieliste so sortiert, dass sie sich nur ausklappt, wenn die überliegende Kategorie ausgewählt wurde. 
