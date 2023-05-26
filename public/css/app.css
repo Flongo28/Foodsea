@@ -1,0 +1,209 @@
+.blog-post-title {
+    margin-bottom: .25rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+}
+
+.h1, h1 {
+    font-size: 2.5rem;
+}
+
+.h2, h2 {
+    font-size: 2rem;
+}
+
+.h3, h3 {
+    font-size: 1.75rem;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+body{
+    background-color: #E9FAC8 !important;
+}
+
+/*Card*/
+
+    .card {
+        background-color: transparent;
+        border-width: 1px;
+        border-color: #569C8B;
+    }
+
+    .card-header{
+        background-color: #74B816;
+        color: white;
+    }
+
+    .card-body{
+        background-color: transparent;
+    }
+
+/*Other*/
+.header {
+    background-color: #418D41;
+    color: white;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search input[type="text"] {
+    width: 70%;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+}
+
+.search button {
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: #569C8B;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.tabs {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.recipe {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.recipe-thumb {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.recipe-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-title {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333; 
+    font-weight: bold;
+}
+
+.recipe-card {
+    background-color: #296b34;
+    color: white;
+}
+
+/*Filter*/
+    /*Zutaten hinzufügen*/
+        #zutat-hinzufuegen-btn{
+            width: 100%;
+        }
+
+    /*Kategorien*/
+        #category-list {
+            max-height: 200px;
+            overflow-y: scroll;
+        }
+
+        .card {
+            margin-bottom: 1rem;
+        }
+
+/*Button look*/
+    .btn {
+        background-color: #37B24D;
+        color: white;
+        border: 0px;
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+    .btn:hover {
+        background-color: #74B816;
+    }
+
+    .btn.active {
+        background-color: #74B816 !important;
+    }
+
+/*Navbar*/
+
+    .navbar {
+        background-image: url('/img/wood.jpeg');
+        color: white !important;
+        margin-bottom: 50px;
+    }
+
+    .buttonbox {
+        bottom: 0px;
+        margin: 0px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+
+    }
+
+    .navbar-brand {
+        padding: 10px 20px;
+        margin: 0px;
+        background-color: #37B24D;
+        color: #fff !important;
+        border-radius: 5px;
+        font-weight: bold;
+        border-color: black;
+      }
+      
+      .navbar-brand:hover {
+        background-color: #74B816;
+        color: #fff !important;
+      }
+
+    /*Navbar paragraphs*/
+    .navbar p {
+        font-size: 50px;
+        margin: 0px;
+        font-family: "Tangerine", Tofu;
+    }
+
+    .logobox {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 100px;
+      }
+      
+      .samepos {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      
+      .samepos + img {
+        transform: translate(-80%, -20%);
+        height: 70px;
+        object-fit: contain;
+      }
