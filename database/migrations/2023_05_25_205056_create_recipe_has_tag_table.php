@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('recipe_has_tag', function (Blueprint $table) {
             $table->foreignId('recipe_id')->references('id')->on('recipe')->constrained()->onDelete('cascade');
-            $table->foreignId('tag_id')->references('id')->on('recipe_tag')->constrained()->onDelete('cascade');
+            $table->unsignedInteger('tag_id');
 
-            $keys = array('tag_id', 'recipe_id');
-            $table->primary($keys);
+            $table->primary(['tag_id', 'recipe_id']);
+            $table->foreign('tag_id')->references('id')->on('recipe_tag')->onDelete('cascade');
         });
     }
 
