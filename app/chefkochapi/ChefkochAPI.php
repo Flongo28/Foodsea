@@ -63,17 +63,20 @@
             $categories = ChefkochAPI::get_categories();
 
             foreach ($categories as $categorie) {
-                $crawlers[] = ChefkochAPI::get_maximized_crawler($categorie->id);
+                for ($i = 1; $i < 10; $i++){
+                    $crawlers[] = ChefkochAPI::get_maximized_crawler($categorie->id, $i);
+                }
             }
 
             return $crawlers;
         }
 
-        private static function get_maximized_crawler($categorie){
+        private static function get_maximized_crawler($categorie, $i){
             $validator = new RecipeValidator();
             $validator->setPremium(false);
             $crawler = new RecipeCrawler($validator);
-            $crawler->useLimit(1000);
+            $crawler->useLimit(100);
+            $crawler->useOffset(100 * $i);
     
             try {
                 $crawler->setCategorys([$categorie]);

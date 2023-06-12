@@ -8,44 +8,14 @@ use App\Models\RecipeHasTag;
 use App\Models\Tag;
 
 require_once app_path() . '/chefkochapi/ChefkochAPI.php';
+require_once app_path() . '/chefkochapi/Crawler/HttpClient.php';
+use App\ChefkochAPI\Crawler\HttpClient;
 
 class DBRecepeFetcher{
-    static private $lastCategoryIndex = 134;
-    static private $lastRecipeId = 1498691255416735;
 
     public static function index()
     {
-        $crawlers = ChefkochAPI::get_crawler_for_categories();
-        $crawl_count = count($crawlers);
-
-        foreach ($crawlers as $categorieIndex => $crawler) {
-            if (isset($lastCategoryIndex)) {
-                if ($categorieIndex != $lastCategoryIndex) {
-                    continue;
-                } else {
-                    print("Stop Skipping\n");
-                    unset($lastCategoryIndex);
-                }
-            }
-
-            foreach ($crawler->getIds() as $id) {
-                if (isset($lastRecipeId)) {
-                    if ($id != $lastRecipeId) {
-                        continue;
-                    } else {
-                        print("Stop Skipping\n");
-                        unset($lastRecipeId);
-                    }
-                }
-
-                if (Recipe::where('id', '=', $id)->exists()) {
-                    continue;
-                }
-
-                print($categorieIndex . "/" . $crawl_count . ": " . $id . "<br/>");
-                DBRecepeFetcher::make($id);
-            }
-        }
+        return ChefkochAPI::get_crawler_for_categories();        
     }
 
     public static function get($id)
@@ -99,10 +69,14 @@ class DBRecepeFetcher{
         }
     }
 
-    private static function make($id)
-    {
-        $recipe = ChefkochAPI::get_recipe($id);
+    private static function load_recipe($id){
 
+    }
+
+    public static function make($id)
+    {
+        $recipe = HttpClient::sendRequest(HttpClient::URL . $id); // Hier muss die API Abfrage rein
+        
         if (!isset($recipe->id)) {
             print("Recipe not found " . $id . "<br/>");
             return;

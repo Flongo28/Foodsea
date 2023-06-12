@@ -56,7 +56,7 @@ Route::get('/favourites/delete/{recepe_id}', [App\Http\Controllers\FavouriteCont
 Route::get('/favourites/create/{recepe_id}', [App\Http\Controllers\FavouriteController::class, 'create'])->name('favourites/create')->middleware('auth');
 
 // Recipe Routes
-Route::get('/recipe/create/{id}', [App\Http\Controllers\RecipeController::class, 'index'])->name('recipe');
+Route::get('/recipe/create/', [App\Http\Controllers\RecipeController::class, 'index'])->name('recipe');
 Route::get('/recipe/delete/{id}', [App\Http\Controllers\RecipeController::class, 'show'])->name('recipe');
 
 // Home Route
