@@ -69,16 +69,12 @@ class DBRecepeFetcher{
         }
     }
 
-    private static function load_recipe($id){
-
-    }
-
     public static function make($id)
     {
         $recipe = HttpClient::sendRequest(HttpClient::URL . $id); // Hier muss die API Abfrage rein
         
         if (!isset($recipe->id)) {
-            print("Recipe not found " . $id . "<br/>");
+            print("Recipe not found " . $id . "\n");
             return;
         }
 

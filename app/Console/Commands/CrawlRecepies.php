@@ -26,6 +26,7 @@ class CrawlRecepies extends Command
 
     /**
      * Execute the console command.
+     * Last time: 1629/45: 68551025448741
      */
     public function handle()
     {
@@ -36,7 +37,7 @@ class CrawlRecepies extends Command
 
         $crawler = $crawlers[0];
 
-        foreach ($crawlers as $crawler) {
+        foreach ($crawlers as $c_id => $crawler) {
             foreach ($crawler->getIds() as $id) {
                 /*if (isset($this->lastRecipeId)) {
                     if ($id != $this->lastRecipeId) {
@@ -51,7 +52,7 @@ class CrawlRecepies extends Command
                     continue;
                 }
                 
-                print($crawl_count . ": " . $id . "\n");
+                print($crawl_count . "/" . $c_id . ": " . $id . "\n");
                 DBRecepeFetcher::make($id);
             }
         }

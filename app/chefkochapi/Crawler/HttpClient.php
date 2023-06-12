@@ -12,7 +12,8 @@
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             $response = curl_exec($curl);
             curl_close($curl);
-            return $response;
+            $decoded_response = json_decode($response);
+            return $decoded_response;
         }
     }
 ?>

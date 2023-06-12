@@ -74,7 +74,7 @@
             }
 
             $content = HttpClient::sendRequest($uri);
-            return json_decode($content);
+            return $content;
         }
     }
 ?>
