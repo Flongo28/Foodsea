@@ -13,7 +13,6 @@ class Recipe extends Model
 
     protected $fillable = [
         'id',
-        'type',
         'title',
         'subtitle',
         'rating',
@@ -22,9 +21,11 @@ class Recipe extends Model
         'viewCount',
         'cookingTime',
         'restingTime',
+        'preparationTime',
         'totalTime',
         'previewImageUrlTemplate',
         'siteUrl',
+        'kCalories',
         'updated_at',
         'created_at'
     ];

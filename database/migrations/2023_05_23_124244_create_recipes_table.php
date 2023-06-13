@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('recipe', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
             $table->string('title');
             $table->string('subtitle');
             $table->decimal('rating', 4, 2)->nullable();
@@ -22,9 +21,11 @@ return new class extends Migration
             $table->integer('viewCount');
             $table->integer('cookingTime');
             $table->integer('restingTime');
+            $table->integer('preparationTime');
             $table->integer('totalTime');
             $table->string('previewImageUrlTemplate');
             $table->string('siteUrl');
+            $table->integer('kCalories');
             $table->timestamps();
         });
     }

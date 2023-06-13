@@ -20,34 +20,4 @@ class RecipeController extends Controller
     public function show($id){
         return DBRecepeFetcher::get($id);
     }
-
-    public function index(){
-        print("Letsgo <br/>");
-        $crawlers = DBRecepeFetcher::index();
-        $crawl_count = count($crawlers);
-
-        print("Crawl Count: " . $crawl_count . "<br/>");
-        
-        $crawler = $crawlers[0];
-
-        foreach ($crawler->getIds() as $id) {
-            /*if (isset($this->lastRecipeId)) {
-                if ($id != $this->lastRecipeId) {
-                    continue;
-                } else {
-                    print("Stop Skipping\n");
-                    unset($this->lastRecipeId);
-                }
-            }*/
-
-            if (Recipe::where('id', '=', $id)->exists()) {
-                continue;
-            }
-            
-            print($crawl_count . ": " . $id . "<br/>");
-            DBRecepeFetcher::make($id);
-        }
-
-        print("Done");
-    }
 }

@@ -15,46 +15,50 @@ class CrawlRecepies extends Command
      *
      * @var string
      */
-    protected $signature = 'app:crawl-recepies';
+    protected $signature = 'recepies:crawl {step=0} {lastId=0}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Loads more commands from the chefkoch api';
+    protected $description = 'Loads more recipes from the chefkoch api';
 
     /**
      * Execute the console command.
-     * Last time: 1629/45: 68551025448741
      */
     public function handle()
     {
-        print("Letsgo \n");
+        $step = $this->argument('step');
+        $lastRecipeId = $this->argument('lastId');
+        
         $crawlers = DBRecepeFetcher::index();
         $crawl_count = count($crawlers);
-        print("Crawl Count: " . $crawl_count . "\n");
-
-        $crawler = $crawlers[0];
 
         foreach ($crawlers as $c_id => $crawler) {
+            if ($c_id < $step) {
+                continue;
+            }
+
             foreach ($crawler->getIds() as $id) {
-                /*if (isset($this->lastRecipeId)) {
-                    if ($id != $this->lastRecipeId) {
-                        continue;
-                    } else {
-                        print("Stop Skipping\n");
-                        unset($this->lastRecipeId);
-                    }
-                }*/
+                if ($id != $lastRecipeId && $lastRecipeId != 0) {
+                    continue;
+                } else {
+                    $lastRecipeId = 0;
+                }
     
                 if (Recipe::where('id', '=', $id)->exists()) {
                     continue;
                 }
                 
-                print($crawl_count . "/" . $c_id . ": " . $id . "\n");
+                $this->printStatus($crawl_count, $c_id, $id);
                 DBRecepeFetcher::make($id);
             }
         }
     } 
+
+    private function printStatus($crawl_count, $c_id, $id)
+    {
+        print("\r" . $c_id . "/" . $crawl_count . ": " . $id);
+    }
 }

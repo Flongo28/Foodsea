@@ -13,11 +13,13 @@
         <div class="col-md-8">
             <div class="card-body">
                 <h5 class="card-title">{{ $recipe->title }}</h5>
-                @if ($recipe->isFavourite)
-                    <a class="btn btn-outline-primary" href="{{ route('favourites/delete', $recipe->id) }}">Remove from Favorites</a>
-                @else
-                    <a class="btn btn-outline-primary" href="{{ route('favourites/create', $recipe->id) }}">Add to Favorites</a>
-                @endif
+                @auth  
+                    @if ($recipe->isFavourite)
+                        <a class="btn btn-outline-primary" href="{{ route('favourites/delete', $recipe->id) }}">Remove from Favorites</a>
+                    @else
+                        <a class="btn btn-outline-primary" href="{{ route('favourites/create', $recipe->id) }}">Add to Favorites</a>
+                    @endif
+                @endauth
             </div>
         </div>
     </div>

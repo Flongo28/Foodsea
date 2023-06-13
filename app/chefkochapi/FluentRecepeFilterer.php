@@ -131,6 +131,10 @@ class FluentRecepeFilterer
     Left join the table favourite, that is filtered 
     */
     private function add_favourites(){
+        if (!auth()->check()){
+            return;
+        }
+        
         $this->recipes->leftJoin('favourite', 'recipe.id', '=', 'favourite.recipe_id')
         ->where(function($query){
             $query->where('favourite.user_id', '=', auth()->user()->id);

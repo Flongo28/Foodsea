@@ -91,7 +91,6 @@ class DBRecepeFetcher{
         // Create recipe
         $recipeObj = Recipe::firstOrCreate([
             "id" => $id,
-            "type" => $recipe->type,
             "title" => $recipe->title,
             "subtitle" => $recipe->subtitle,
             "rating" => $recipe->rating->rating,
@@ -100,7 +99,9 @@ class DBRecepeFetcher{
             "viewCount" => $recipe->viewCount,
             "cookingTime" => $recipe->cookingTime,
             "restingTime" => $recipe->restingTime,
+            "preparationTime" => $recipe->preparationTime,
             "totalTime" => $recipe->totalTime,
+            "kCalories" => $recipe->kCalories,
             "previewImageUrlTemplate" => $recipe->previewImageUrlTemplate,
             "siteUrl" => $recipe->siteUrl]);
 
