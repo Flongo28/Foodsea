@@ -1,8 +1,6 @@
 <?php
     namespace App\ChefkochAPI\Crawler\Validators;
 
-    require_once 'AbstactRecipeValidator.php';
-
     /*
     * Accepts search parameters and uses them to find a list of valid recipes
     */

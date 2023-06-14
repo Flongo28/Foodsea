@@ -1,9 +1,7 @@
 <?php
 
-require_once app_path() . '/chefkochapi/ChefkochAPI.php';
-
-use Illuminate\Support\Facades\Route;
 use App\ChefkochAPI\ChefkochAPI;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,10 +35,18 @@ Route::get('/result', function () {
     $min_kochzeit = request()->input('min_kochzeit');
     $max_kochzeit = request()->input('max_kochzeit');
     $zutaten = request()->input('zutaten');
-    $categories = request()->input('categories');
     $rating = request()->input('rating');
+    $filter_options = [
+        "min_kochzeit" => $min_kochzeit,
+        "max_kochzeit" => $max_kochzeit,
+        "zutaten" => $zutaten,
+        "rating" => $rating
+    ];
 
-    return view('recipes', ["min_kochzeit" => $min_kochzeit, "max_kochzeit" => $max_kochzeit, "zutaten" => $zutaten, "categories" => $categories, "rating" => $rating]);
+    $categories = request()->input('categories');
+    
+
+    return view('recipes', ["categories" => $categories, "filter_options" => $filter_options]);
     
 })->name('result');
 
@@ -64,7 +70,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Authentication Routes...
 Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
-Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+Route::get('/logout_user', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout_user');
 
 // Registration Routes...
 Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');

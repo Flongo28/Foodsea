@@ -5,15 +5,10 @@
     use \TypeError;
     use \InvalidArgumentException;
 
-    require_once 'Category/CategoryCrawler.php';
     use App\ChefkochAPI\Category\CategoryCrawler;
-    require_once 'Crawler/RecipeCrawler.php';
     use App\ChefkochAPI\Crawler\RecipeCrawler;
-    require_once 'Crawler/Validators/RecipeValidator.php';
     use App\ChefkochAPI\Crawler\Validators\RecipeValidator;
-    require_once 'FluentRecepeFilterer.php';
     use App\ChefkochAPI\FluentRecepeFilterer;
-    require_once 'DBRecepeFetcher.php';
     use App\ChefkochAPI\DBRecepeFetcher;
 
     class NoDataException extends Exception {
@@ -21,7 +16,32 @@
     }
 
     class ChefkochAPI {
-        public static function get_recipies($categories, $min_time, $max_time, $ingredients, $rating = 0){
+        private static function apply_filters($searcher, $filter_options){
+            if (isset($filter_options['zutaten'])) {
+                $searcher->filter_ingredients($filter_options['zutaten']);
+            }
+            if (isset($filter_options['tags'])) {
+                $searcher->filter_tags($filter_options['tags']);
+            }
+            if (isset($filter_options['name'])) {
+                $searcher->filter_name($filter_options['name']);
+            }
+            if (isset($filter_options['rating'])) {
+                $searcher->filter_rating($filter_options['rating']);
+            }
+            if (isset($filter_options['difficulty'])) {
+                $searcher->filter_difficulty($filter_options['difficulty']);
+            }
+            if (isset($filter_options['min_kochzeit'])) {
+                $searcher->filter_min_time($filter_options['min_kochzeit']);
+            }
+            if (isset($filter_options['max_kochzeit'])) {
+                $searcher->filter_time($filter_options['max_kochzeit']);
+            }
+            return $searcher;
+        }
+
+        public static function get_recipies($categories, $filter_options){
             // Prepare Crawler
             $validator = new RecipeValidator();
             $validator->setPremium(false);
@@ -36,11 +56,9 @@
                 $searcher->filter_ids($crawler->getIds());
             } catch (TypeError $ignore) {}
 
-            $recepies = $searcher->filter_min_time($min_time)
-            ->filter_time($max_time)
-            ->filter_ingredients($ingredients)
-            ->filter_rating($rating)
-            ->get_recipes();
+            // Apply filters
+            $searcher = ChefkochAPI::apply_filters($searcher, $filter_options);
+            $recepies = $searcher->get_recipes();
 
             if (empty($recepies)) {
                 throw new NoDataException("No recepies found");

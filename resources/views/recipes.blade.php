@@ -6,6 +6,6 @@ Recipes
 
 @section('content')
 <div class="container">
-    @livewire('recipelist', ['min_kochzeit' => $min_kochzeit, 'max_kochzeit' => $max_kochzeit, 'zutaten' => $zutaten, 'categories' => $categories, 'rating' => $rating])
+    @livewire('recipelist', ['categories' => $categories, 'filter_options' => $filter_options])
 </div>
 @endsection

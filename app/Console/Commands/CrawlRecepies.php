@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-require_once app_path() . '/chefkochapi/DBRecepeFetcher.php';
 use App\ChefkochAPI\DBRecepeFetcher;
 use App\Models\Recipe;
 

@@ -7,15 +7,13 @@ use App\Models\NeedsIngredient;
 use App\Models\RecipeHasTag;
 use App\Models\Tag;
 
-require_once app_path() . '/chefkochapi/ChefkochAPI.php';
-require_once app_path() . '/chefkochapi/Crawler/HttpClient.php';
 use App\ChefkochAPI\Crawler\HttpClient;
 
 class DBRecepeFetcher{
 
     public static function index()
     {
-        return ChefkochAPI::get_crawler_for_categories();        
+        return Index::get_crawler_for_categories();        
     }
 
     public static function get($id)

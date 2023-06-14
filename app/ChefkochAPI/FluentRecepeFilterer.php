@@ -3,7 +3,6 @@ namespace App\ChefkochAPI;
 
 use Illuminate\Support\Facades\DB;
 
-require_once 'DBRecepeFetcher.php';
 use App\ChefkochAPI\DBRecepeFetcher;
 
 class FluentRecepeFilterer

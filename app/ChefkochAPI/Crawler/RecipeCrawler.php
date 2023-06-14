@@ -3,7 +3,6 @@
 
     use \Exception;
 
-    require_once 'HttpClient.php';
     use App\ChefkochAPI\Crawler\HttpClient;
 
     /*
