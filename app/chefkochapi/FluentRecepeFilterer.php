@@ -98,7 +98,7 @@ class FluentRecepeFilterer
                     $query->orWhere('recipe_tag.tag', 'LIKE', '%' . $this->tags[$i] . '%');
                 }
             })
-            ->groupBy('recipe.id', 'recipe.title', 'recipe.subtitle', 'recipe.rating', 'recipe.difficulty', 'recipe.totalTime', 'recipe.siteUrl', 'recipe.previewImageUrlTemplate', 'isFavourite')
+            ->groupBy('recipe.id', 'recipe.title', 'recipe.subtitle', 'recipe.rating', 'recipe.difficulty', 'recipe.totalTime', 'recipe.siteUrl', 'recipe.previewImageUrlTemplate')
             ->havingRaw('COUNT(recipe.id) = ?', [count($this->tags)]);
         }
     }
@@ -120,7 +120,7 @@ class FluentRecepeFilterer
                     $query->orWhere('ingredient.name', 'LIKE', '%' . $this->ingredients[$i] . '%');
                 }
             })
-            ->groupBy('recipe.id', 'recipe.title', 'recipe.subtitle', 'recipe.rating', 'recipe.difficulty', 'recipe.totalTime', 'recipe.siteUrl', 'recipe.previewImageUrlTemplate', 'isFavourite')
+            ->groupBy('recipe.id', 'recipe.title', 'recipe.subtitle', 'recipe.rating', 'recipe.difficulty', 'recipe.totalTime', 'recipe.siteUrl', 'recipe.previewImageUrlTemplate')
             ->havingRaw('COUNT(recipe.id) = ?', [count($this->ingredients)]);
         }
     }
@@ -135,6 +135,7 @@ class FluentRecepeFilterer
             return;
         }
         
+        $this->recipes->addSelect('isFavourite');
         $this->recipes->leftJoin('favourite', 'recipe.id', '=', 'favourite.recipe_id')
         ->where(function($query){
             $query->where('favourite.user_id', '=', auth()->user()->id);
