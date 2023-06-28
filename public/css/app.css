@@ -207,3 +207,39 @@ body{
         height: 70px;
         object-fit: contain;
       }
+
+      /*Double Slider*/
+
+        .slider {
+            max-height: 10px;
+        }
+
+        /* Make the handles to dots */
+        .slider .noUi-handle {
+            background-color: #767676;  
+            max-width: 20px;
+            max-height: 20px;
+            border-radius: 10px;
+            box-shadow: none; /* Remove any box shadow */
+            border: none; /* Remove any border */
+        }
+
+        .slider {
+            cursor: pointer;
+        }
+
+        #slider .noUi-connect {
+        background-color: #767676; /* Default inactive color */
+        }
+        
+        /* Styling for the active slider connect */
+        #slider .noUi-connect.noUi-active {
+        background-color: #efefef; /* Active color */
+        }
+
+        #slider .noUi-handle:before,
+        #slider .noUi-handle:after {
+            display: none; /* Hide the lines in the middle */
+        }
+
+

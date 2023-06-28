@@ -3,7 +3,7 @@
 <h3 class="blog-post-title">{{$title}}</h3>
 <div class="form-group">
     <label for="kochzeit">{{$name}}</label>
-    <div id="slider"></div>
+    <div id="slider" class="slider"></div>
     <div class="d-flex justify-content-between">
         <span id="min">Min: {{$minimum}}</span>
         <span id="max">Max: {{$maximum}}</span>
