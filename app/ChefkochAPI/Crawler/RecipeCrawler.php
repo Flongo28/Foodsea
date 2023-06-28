@@ -4,6 +4,7 @@
     use \Exception;
 
     use App\ChefkochAPI\Crawler\HttpClient;
+    use TypeError;
 
     /*
     * Accepts search parameters and uses them to find a list of valid recipes
@@ -11,6 +12,7 @@
     class RecipeCrawler {
         private $parameters = [];
         private $validator;
+        private $true_limit = 100;
 
         public function __construct($validator = null) {
             $this->validator = $validator;
@@ -32,6 +34,9 @@
         }
 
         public function setCategorys($list) {
+            if (count($list) == 0) {
+                throw new TypeError("Category list must not be empty");
+            }
             $categories = implode(",", $list);
             $this->parameters['categories'] = $categories;
             return $this;
@@ -63,7 +68,6 @@
         
             return $recipeIds;
         }
-        
 
         private function fetchRecipes() {
             $uri = HttpClient::URL;

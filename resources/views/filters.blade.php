@@ -7,6 +7,12 @@ Filtering
 @section('content')
   @component('components/card')
     <form action="{{ route('result') }}" method="GET">
+      <!-- Name of the recipe -->
+      <h3>Name</h3>
+      <div class="form-group">
+        <input type="text" class="form-control" aria-describedby="name" placeholder="Name" name="name">
+      </div>
+
       @component('components/doubleslider', 
       ['title' => 'Kochzeit',
       'name' => 'Kochzeit (in Minuten)', 
@@ -15,6 +21,8 @@ Filtering
       'min_name' => 'min_kochzeit', 
       'max_name' => 'max_kochzeit'])
       @endcomponent
+
+      
 
       <!-- Ratingslider from Bootstrap Starting at 0 -->
       <h3>Bewertung</h3>

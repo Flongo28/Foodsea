@@ -1,4 +1,8 @@
 <div wire:init="getRecepies" class="wire-container">
+    @php 
+        print_r($filter_options);
+    @endphp
+
     @if ($isLoading)
 
         @include('loading')

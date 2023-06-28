@@ -32,20 +32,33 @@ Route::get('/search', function () {
 })->name('search');
 
 Route::get('/result', function () {
-    $min_kochzeit = request()->input('min_kochzeit');
-    $max_kochzeit = request()->input('max_kochzeit');
+
     $zutaten = request()->input('zutaten');
-    $rating = request()->input('rating');
     $filter_options = [
-        "min_kochzeit" => $min_kochzeit,
-        "max_kochzeit" => $max_kochzeit,
-        "zutaten" => $zutaten,
-        "rating" => $rating
+        "zutaten" => $zutaten
     ];
 
-    $categories = request()->input('categories');
-    
+    $min_kochzeit = request()->input('min_kochzeit');
+    if ($min_kochzeit != 0) {
+        $filter_options["min_kochzeit"] = $min_kochzeit;
+    }
 
+    $max_kochzeit = request()->input('max_kochzeit');
+    if ($max_kochzeit != 120) {
+        $filter_options["max_kochzeit"] = $max_kochzeit;
+    }
+    
+    $rating = request()->input('rating');
+    if ($rating != 0) {
+        $filter_options["rating"] = $rating;
+    }
+
+    $name = request()->input('name');
+    if ($name != "") {
+        $filter_options["name"] = $name;
+    }    
+
+    $categories = request()->input('categories');
     return view('recipes', ["categories" => $categories, "filter_options" => $filter_options]);
     
 })->name('result');
